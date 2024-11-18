@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/react-endless-practice/static/css/main.7acaea2f.css",
+    "main.js": "/react-endless-practice/static/js/main.97c58b39.js",
+    "index.html": "/react-endless-practice/index.html",
+    "main.7acaea2f.css.map": "/react-endless-practice/static/css/main.7acaea2f.css.map",
+    "main.97c58b39.js.map": "/react-endless-practice/static/js/main.97c58b39.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.7acaea2f.css",
+    "static/js/main.97c58b39.js"
+  ]
+}
