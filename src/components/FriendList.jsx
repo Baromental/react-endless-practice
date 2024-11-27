@@ -1,2 +1,4 @@
-<ul class="friend-list">
+export const FriendsList = () => {
+    return <ul class="friend-list">
 </ul>
+}

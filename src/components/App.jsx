@@ -1,16 +1,15 @@
-export const App = () => {
-  return (
-    <div
-      style={{
-        height: '100vh',
-        display: 'flex',
-        justifyContent: 'center',
-        alignItems: 'center',
-        fontSize: 40,
-        color: '#010101'
-      }}
-    >
-      React practice
-    </div>
-  );
-};
+import { FriendsList } from "./FriendList"
+import { Profile } from "./Profile"
+import { Statistics } from "./Statistics"
+import { TransactionHistory } from "./TransactionHistory"
+
+function App(){
+  return <div>
+    <Profile/>
+    <FriendsList/>
+    <Statistics/>
+    <TransactionHistory/>
+  </div>
+}
+
+export default App
