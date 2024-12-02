@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const TransactionHistory = () => {
   <table class="transaction-history">
     <thead>

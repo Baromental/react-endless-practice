@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const Statistics = () => {
   <section class="statistics">
     <h2 class="title">Upload stats</h2>

@@ -1,3 +1,5 @@
+import React from 'react';
+
 export const Profile = () => {
   <div class="profile">
     <div class="description">
