@@ -1,6 +1,8 @@
 import React from 'react';
 
-export const FriendsList = () => {
-    return <ul class="friend-list">
-</ul>
+export const FriendsList = friends => {
+    console.log(friends);
+    
+//     return <ul class="friend-list">
+// </ul>
 }
