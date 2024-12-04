@@ -1,7 +1,19 @@
 import React from 'react';
 
-export const Statistics = dataStatistics => {
-  console.log(dataStatistics);
+export const Statistics = ({dataStatistics}) => {
+  return <section>
+    <h2>Upload stats</h2>
+    <div>
+      <ul>
+      {dataStatistics.map(data => (
+        <li id={data.id}>
+          <span>{data.label}</span>
+          <span>{data.percentage}%</span>
+        </li>
+      ))}
+      </ul>
+    </div>
+  </section>
   
   // <section class="statistics">
   //   <h2 class="title">Upload stats</h2>
