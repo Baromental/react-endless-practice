@@ -1,58 +1,31 @@
 import React from 'react';
+import s from './Profile.module.css'
 
 export const Profile = ({user}) => {
-  return <section>
-      <div>
-        <img
+  return <section className={s.profile}>
+      <div className={s.description}>
+        <img className={s.avatar}
           src={user.avatar}
           alt={user.tag}
         />
-        <p>{user.username}</p>
-        <p>@{user.tag}</p>
-        <p>{user.location}</p>
+        <p className={s.name}>{user.username}</p>
+        <p className={s.tag}>@{user.tag}</p>
+        <p className={s.location}>{user.location}</p>
       </div>
-      <ul>
+      <ul className={s.stats}>
         <li>
-          <span>Followers</span>
-          <span>{user.stats.followers}</span>
+          <span className={s.label}>Followers</span>
+          <span className={s.quantity}>{user.stats.followers}</span>
         </li>
         <li>
-          <span>Views</span>
-          <span>{user.stats.views}</span>
+          <span className={s.label}>Views</span>
+          <span className={s.quantity}>{user.stats.views}</span>
         </li>
         <li>
-          <span>Likes</span>
-          <span>{user.stats.likes}</span>
+          <span className={s.label}>Likes</span>
+          <span className={s.quantity}>{user.stats.likes}</span>
         </li>
       </ul>
   </section>
-  
-  // <div class="profile">
-  //   <div class="description">
-  //     <img
-  //       src="https://cdn-icons-png.flaticon.com/512/1077/1077012.png"
-  //       alt="User avatar"
-  //       class="avatar"
-  //     />
-  //     <p class="name">Petra Marica</p>
-  //     <p class="tag">@pmarica</p>
-  //     <p class="location">Salvador, Brasil</p>
-  //   </div>
-
-  //   <ul class="stats">
-  //     <li>
-  //       <span class="label">Followers</span>
-  //       <span class="quantity">1000</span>
-  //     </li>
-  //     <li>
-  //       <span class="label">Views</span>
-  //       <span class="quantity">2000</span>
-  //     </li>
-  //     <li>
-  //       <span class="label">Likes</span>
-  //       <span class="quantity">3000</span>
-  //     </li>
-  //   </ul>
-  // </div>
 }
 
