@@ -7,7 +7,7 @@ export const Phonebook = () => {
       <form action=""></form>
       <h3>Contacts</h3>
       <label htmlFor=""></label>
-      <input type="text" />
+      <input type="tel" name="number" required />
       <ul></ul>
     </div>
   );
