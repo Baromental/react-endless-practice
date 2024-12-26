@@ -1,32 +1,20 @@
 import React from 'react';
+import { Statistics } from './Statistics';
+import { FeedbackOptions } from './FeedbackOptions';
 
-export const Feedback = () => {
-  return (
-    <div>
+export class Feedback extends React.Component {
+  state = {
+    good: 0,
+    neutral: 0,
+    bad: 0,
+  };
+
+  render() {
+    return (
       <div>
-        <h2>Please leave feedback</h2>
-        <ul>
-          <li>
-            <button>Good</button>
-          </li>
-          <li>
-            <button>Neutral</button>
-          </li>
-          <li>
-            <button>Bad</button>
-          </li>
-        </ul>
+        <FeedbackOptions />
+        <Statistics />
       </div>
-      <div>
-        <h2>Statistics</h2>
-        <ul>
-          <li>Good: {}</li>
-          <li>Neutral: {}</li>
-          <li>Bad: {}</li>
-          <li>Total: {}</li>
-          <li>Positive feedback: {}%</li>
-        </ul>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
