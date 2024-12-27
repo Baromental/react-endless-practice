@@ -9,6 +9,12 @@ export class Feedback extends React.Component {
     bad: 0,
   };
 
+  handleChangeGood() {}
+
+  handleChangeNeutral() {}
+
+  handleChangeBad() {}
+
   render() {
     return (
       <div>
