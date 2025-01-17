@@ -1,8 +1,9 @@
 import React from 'react';
+import s from './Feedback.module.css';
 
 export const FeedbackOptions = ({ onChangeFeedback }) => {
   return (
-    <div>
+    <>
       <ul>
         <li>
           <button onClick={() => onChangeFeedback('good')}>Good</button>
@@ -14,6 +15,6 @@ export const FeedbackOptions = ({ onChangeFeedback }) => {
           <button onClick={() => onChangeFeedback('bad')}>Bad</button>
         </li>
       </ul>
-    </div>
+    </>
   );
 };

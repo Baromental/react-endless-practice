@@ -1,4 +1,5 @@
 import React from 'react';
+import s from './Feedback.module.css';
 
 export const Statistics = ({
   good,
