@@ -1,6 +1,8 @@
 import React from 'react';
 import { Statistics } from './Statistics';
 import { FeedbackOptions } from './FeedbackOptions';
+import { Section } from './Section';
+import { Notification } from './Notification';
 
 export class Feedback extends React.Component {
   state = {
@@ -9,7 +11,7 @@ export class Feedback extends React.Component {
     bad: 0,
   };
 
-  handleChangeMark = key => {
+  handleChangeFeedback = key => {
     this.setState(prev => ({ [key]: prev[key] + 1 }));
   };
 
@@ -22,14 +24,25 @@ export class Feedback extends React.Component {
         : ((good / countTotalFeedback) * 100).toFixed(0);
     return (
       <>
-        <FeedbackOptions onChangaMark={this.handleChangeMark} />
-        <Statistics
-          good={good}
-          neutral={neutral}
-          bad={bad}
-          total={countTotalFeedback}
-          positivePercentage={countPositiveFeedbackPercentage}
-        />
+        <Section title="Please leave feedback">
+          <FeedbackOptions
+            title="Please leave feedback"
+            onChangeFeedback={this.handleChangeFeedback}
+          />
+        </Section>
+        <Section title="Statistics">
+          {countTotalFeedback > 0 ? (
+            <Statistics
+              good={good}
+              neutral={neutral}
+              bad={bad}
+              total={countTotalFeedback}
+              positivePercentage={countPositiveFeedbackPercentage}
+            />
+          ) : (
+            <Notification message="There is no feedback" />
+          )}
+        </Section>
       </>
     );
   }
