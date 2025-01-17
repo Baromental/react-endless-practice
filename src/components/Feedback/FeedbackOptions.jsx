@@ -1,18 +1,18 @@
 import React from 'react';
 
-export const FeedbackOptions = () => {
+export const FeedbackOptions = ({ onChangaMark }) => {
   return (
     <div>
       <h2>Please leave feedback</h2>
       <ul>
         <li>
-          <button onClick={}>Good</button>
+          <button onClick={() => onChangaMark('good')}>Good</button>
         </li>
         <li>
-          <button onClick={}>Neutral</button>
+          <button onClick={() => onChangaMark('neutral')}>Neutral</button>
         </li>
         <li>
-          <button onClick={}>Bad</button>
+          <button onClick={() => onChangaMark('bad')}>Bad</button>
         </li>
       </ul>
     </div>
