@@ -4,7 +4,7 @@ import s from './Feedback.module.css';
 export const FeedbackOptions = ({ onChangeFeedback }) => {
   return (
     <>
-      <ul>
+      <ul className={s.list}>
         <li>
           <button onClick={() => onChangeFeedback('good')}>Good</button>
         </li>
