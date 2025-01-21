@@ -1,4 +1,7 @@
 import React from 'react';
+import { ContactForm } from './ContactForm';
+import { ContactList } from './ContactList';
+import { Filter } from './Filter';
 
 export class Phonebook extends React.Component {
   state = {
@@ -9,19 +12,15 @@ export class Phonebook extends React.Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
   render() {
     return (
       <div>
-        <h2>Phonebook</h2>
-        <form action=""></form>
-        <h3>Contacts</h3>
-        <label htmlFor=""></label>
-        <input type="tel" name="number" required />
-        <ul></ul>
+        <h1>Phonebook</h1>
+        <ContactForm />
+        <h2>Contacts</h2>
+        <Filter /> <ContactList />
       </div>
     );
   }
