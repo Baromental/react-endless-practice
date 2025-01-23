@@ -2,6 +2,7 @@ import React from 'react';
 import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
 import { Filter } from './Filter';
+import { nanoid } from 'nanoid';
 
 export class Phonebook extends React.Component {
   state = {
@@ -12,15 +13,36 @@ export class Phonebook extends React.Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
+    name: '',
+    number: '',
   };
 
+  handleSubmitForm = e => {
+    e.preventDefault();
+    console.log('start');
+
+    // const { contacts } = this.state;
+    // const newContact = {
+    //   id: nanoid(),
+    //   name: this.name,
+    //   number: this.number,
+    // };
+    // console.log(newContact);
+
+    // this.setState({contacts:})
+  };
+  handleDeleteContact = id => {};
+  getFilteredContact = () => {};
+
   render() {
+    const { contacts, filter } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
-        <ContactForm />
+        <ContactForm onSubmit={this.handleSubmitForm} />
         <h2>Contacts</h2>
-        <Filter /> <ContactList />
+        <Filter onFilter={this.getFilteredContact} filter={filter} />
+        <ContactList onDelete={this.handleDeleteContact} contacts={contacts} />
       </div>
     );
   }
