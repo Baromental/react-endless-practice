@@ -19,11 +19,17 @@ export class Phonebook extends React.Component {
 
   handleSubmitForm = e => {
     e.preventDefault();
-    console.log('Suuuuuuuuuuuuuper');
+    console.log('start');
 
-    const form = e.currentTarget;
-    const name = form.elements.name.value;
-    const tel = form.elements.number.value;
+    // const { contacts } = this.state;
+    // const newContact = {
+    //   id: nanoid(),
+    //   name: this.name,
+    //   number: this.number,
+    // };
+    // console.log(newContact);
+
+    // this.setState({contacts:})
   };
   handleDeleteContact = id => {};
   getFilteredContact = () => {};
@@ -33,13 +39,7 @@ export class Phonebook extends React.Component {
     return (
       <div>
         <h1>Phonebook</h1>
-        <form onSubmit={this.handleSubmitForm} action="">
-          <label htmlFor="">Name</label>
-          <input type="text" name="name" required />
-          <label htmlFor="">Number</label>
-          <input type="tel" name="number" required />
-          <button>Add contact</button>
-        </form>
+        <ContactForm onSubmit={this.handleSubmitForm} />
         <h2>Contacts</h2>
         <Filter onFilter={this.getFilteredContact} filter={filter} />
         <ContactList onDelete={this.handleDeleteContact} contacts={contacts} />
