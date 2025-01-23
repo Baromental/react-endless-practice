@@ -12,10 +12,10 @@ export class ContactForm extends React.Component {
   };
 
   handleSubmit = e => {
-    e.preventDefault(); // Запобігає перезавантаженню сторінки
+    e.preventDefault();
     const { name, number } = this.state;
-    this.props.onSubmit({ name, number }); // Передає дані назад в компонент Phonebook
-    this.setState({ name: '', number: '' }); // Очищає форму після додавання
+    this.props.onSubmit({ name, number });
+    this.setState({ name: '', number: '' });
   };
 
   render() {
