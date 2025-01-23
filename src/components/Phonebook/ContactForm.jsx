@@ -11,11 +11,18 @@ export class ContactForm extends React.Component {
     this.setState({ [name]: value });
   };
 
+  handleSubmit = e => {
+    e.preventDefault(); // Запобігає перезавантаженню сторінки
+    const { name, number } = this.state;
+    this.props.onSubmit({ name, number }); // Передає дані назад в компонент Phonebook
+    this.setState({ name: '', number: '' }); // Очищає форму після додавання
+  };
+
   render() {
     const { name, number } = this.state;
     return (
       <>
-        <form action="">
+        <form onSubmit={this.handleSubmit} action="">
           <label htmlFor="">Name</label>
           <input
             type="text"
