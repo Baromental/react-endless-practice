@@ -1,5 +1,5 @@
 import React from 'react';
-
+import s from './Phonebook.module.css';
 export class ContactForm extends React.Component {
   state = {
     name: '',
@@ -14,7 +14,7 @@ export class ContactForm extends React.Component {
   handleSubmit = e => {
     e.preventDefault();
     const { name, number } = this.state;
-    this.props.onSubmit({ name, number });
+    this.props.addContact({ name, number });
     this.setState({ name: '', number: '' });
   };
 
@@ -22,23 +22,27 @@ export class ContactForm extends React.Component {
     const { name, number } = this.state;
     return (
       <>
-        <form onSubmit={this.handleSubmit} action="">
-          <label htmlFor="">Name</label>
-          <input
-            type="text"
-            name="name"
-            onChange={this.handleChangeInput}
-            value={name}
-            required
-          />
-          <label htmlFor="">Number</label>
-          <input
-            type="tel"
-            name="number"
-            onChange={this.handleChangeInput}
-            value={number}
-            required
-          />
+        <form className={s.wrapper} onSubmit={this.handleSubmit} action="">
+          <label htmlFor="">
+            Name
+            <input
+              type="text"
+              name="name"
+              onChange={this.handleChangeInput}
+              value={name}
+              required
+            />
+          </label>
+          <label htmlFor="">
+            Number
+            <input
+              type="tel"
+              name="number"
+              onChange={this.handleChangeInput}
+              value={number}
+              required
+            />
+          </label>
           <button>Add contact</button>
         </form>
       </>
