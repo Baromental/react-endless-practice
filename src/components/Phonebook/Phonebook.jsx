@@ -3,6 +3,7 @@ import { ContactForm } from './ContactForm';
 import { ContactList } from './ContactList';
 import { Filter } from './Filter';
 import { nanoid } from 'nanoid';
+import s from './Phonebook.module.css';
 
 export class Phonebook extends React.Component {
   state = {
@@ -13,36 +14,50 @@ export class Phonebook extends React.Component {
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
     filter: '',
-    name: '',
-    number: '',
   };
 
-  handleSubmitForm = e => {
-    e.preventDefault();
-    console.log('start');
-
-    // const { contacts } = this.state;
-    // const newContact = {
-    //   id: nanoid(),
-    //   name: this.name,
-    //   number: this.number,
-    // };
-    // console.log(newContact);
-
-    // this.setState({contacts:})
+  hadleAddContact = ({ name, number }) => {
+    const { contacts } = this.state;
+    const newContact = {
+      id: nanoid(),
+      name: name,
+      number: number,
+    };
+    if (contacts.some(contact => contact.name === name)) {
+      return alert(`${name} already in contacts.`);
+    }
+    this.setState(prev => ({ contacts: [...prev.contacts, newContact] }));
   };
-  handleDeleteContact = id => {};
-  getFilteredContact = () => {};
+
+  handleDeleteContact = id => {
+    this.setState(prev => ({
+      contacts: prev.contacts.filter(contact => contact.id !== id),
+    }));
+  };
+
+  getFilteredContact = e => {
+    this.setState({ filter: e.target.value });
+  };
 
   render() {
     const { contacts, filter } = this.state;
+    const loweredFilter = filter.toLowerCase();
+    const visibleContacts = contacts.filter(
+      contact =>
+        contact.name.toLowerCase().includes(loweredFilter) ||
+        contact.number.toLowerCase().includes(loweredFilter)
+    );
+
     return (
-      <div>
+      <div className={s.wrapper}>
         <h1>Phonebook</h1>
-        <ContactForm onSubmit={this.handleSubmitForm} />
+        <ContactForm addContact={this.hadleAddContact} />
         <h2>Contacts</h2>
         <Filter onFilter={this.getFilteredContact} filter={filter} />
-        <ContactList onDelete={this.handleDeleteContact} contacts={contacts} />
+        <ContactList
+          onDelete={this.handleDeleteContact}
+          contacts={visibleContacts}
+        />
       </div>
     );
   }

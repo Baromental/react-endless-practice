@@ -1,12 +1,13 @@
 import React from 'react';
-
-export const ContactList = ({ contacts }) => {
+import s from './Phonebook.module.css';
+export const ContactList = ({ contacts, onDelete }) => {
   return (
     <>
       <ul>
-        {contacts.map(contact => (
-          <li>
-            {contact.name}: {contact.number} <button>Delete</button>{' '}
+        {contacts.map(({ id, name, number }) => (
+          <li key={id}>
+            {name}: {number}
+            <button onClick={() => onDelete(id)}>Delete</button>
           </li>
         ))}
       </ul>
