@@ -2,7 +2,7 @@ import React from 'react';
 import s from './Phonebook.module.css';
 export const ContactList = ({ contacts, onDelete }) => {
   return (
-    <>
+    <div className={s.wrapper}>
       <ul>
         {contacts.map(({ id, name, number }) => (
           <li key={id}>
@@ -11,6 +11,6 @@ export const ContactList = ({ contacts, onDelete }) => {
           </li>
         ))}
       </ul>
-    </>
+    </div>
   );
 };
