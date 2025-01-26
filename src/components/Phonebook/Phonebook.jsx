@@ -16,18 +16,6 @@ export class Phonebook extends React.Component {
     filter: '',
   };
 
-  componentDidMount() {
-    const savedContacts = localStorage.getItem('contacts');
-    if (savedContacts) {
-      this.setState({ contacts: JSON.parse(savedContacts) });
-    }
-  }
-  componentDidUpdate(prevProps, prevState) {
-    if (prevState.contacts !== this.state.contacts) {
-      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
-    }
-  }
-
   hadleAddContact = ({ name, number }) => {
     const { contacts } = this.state;
     const newContact = {
