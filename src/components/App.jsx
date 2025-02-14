@@ -1,11 +1,5 @@
-import { Phonebook } from './Phonebook/Phonebook';
-
 function App() {
-  return (
-    <div>
-      <Phonebook />
-    </div>
-  );
+  return <div></div>;
 }
 
 export default App;
