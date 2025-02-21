@@ -3,7 +3,7 @@ import Searchbar from './Gallery/Searchbar';
 import { ImageGallery } from './Gallery/ImageGallery';
 import { Loader } from './Gallery/Loader';
 import { Button } from './Gallery/Button';
-import { Modal } from './Gallery/Modal';
+import Modal from './Gallery/Modal';
 import { fetchPictures } from 'services/api';
 import s from './styles.module.css';
 
@@ -58,7 +58,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { pictures, loading, totalPictures, isOpen } = this.state;
+    const { pictures, loading, totalPictures, isOpen, content } = this.state;
     return (
       <div className={s.App}>
         <Searchbar handleSetQuery={this.handleSetQuery} />
@@ -70,7 +70,9 @@ export default class App extends Component {
         {pictures.length && pictures.length < totalPictures ? (
           <Button handleLoadMore={this.handleLoadMore} />
         ) : null}
-        {isOpen && <Modal closeModal={this.handleToggleModal} />}
+        {isOpen && (
+          <Modal closeModal={this.handleToggleModal} content={content} />
+        )}
       </div>
     );
   }

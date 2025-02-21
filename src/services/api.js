@@ -8,7 +8,7 @@ export const fetchPictures = async (query, page) => {
       key: '42006022-41a20d969efbb704c546dcbcd',
       q: query,
       page: page,
-      per_page: 12,
+      per_page: 15,
     },
   });
   return data;
