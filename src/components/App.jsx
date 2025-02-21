@@ -1,45 +1,61 @@
 import React, { Component } from 'react';
 import Searchbar from './Gallery/Searchbar';
-// import { ImageGallery } from './Gallery/ImageGallery';
+import { ImageGallery } from './Gallery/ImageGallery';
 import { Loader } from './Gallery/Loader';
-// import { Button } from './Gallery/Button';
-import { fetchPhoto } from 'services/api';
+import { Button } from './Gallery/Button';
+import { fetchPictures } from 'services/api';
+import s from './styles.module.css';
 
 export default class App extends Component {
   state = {
     query: '',
-    pictures: 0,
+    pictures: [],
     totalPictures: 0,
+    page: 1,
     loading: false,
     error: null,
   };
 
-  async componentDidMount() {
-    try {
-      this.setState({ loading: true });
-      const { pictures, totalPictures } = await fetchPhoto();
-      this.setState({ pictures, totalPictures });
-    } catch (error) {
-      this.setState({ error });
-    } finally {
-      this.setState({ loading: false });
+  async componentDidUpdate(prevProps, prevState) {
+    if (
+      prevState.query !== this.state.query ||
+      prevState.page !== this.state.page
+    ) {
+      try {
+        this.setState({ loading: true });
+        const { hits, totalHits } = await await fetchPictures(
+          this.state.query,
+          this.state.page
+        );
+        this.setState(prev => ({
+          pictures: [...prev.pictures, ...hits],
+          totalPictures: totalHits,
+        }));
+      } catch (error) {
+      } finally {
+        this.setState({ loading: false });
+      }
     }
   }
 
-  async componentDidUpdate() {}
-
   handleSetQuery = query => {
-    this.setState({ query });
+    this.setState({ query, pictures: [], page: 1 });
+  };
+
+  handleLoadMore = () => {
+    this.setState(prev => ({ page: prev.page + 1 }));
   };
 
   render() {
-    const { items, loading } = this.state;
+    const { pictures, loading, totalPictures } = this.state;
     return (
-      <div>
+      <div className={s.App}>
         <Searchbar handleSetQuery={this.handleSetQuery} />
-        {/* <ImageGallery /> */}
-        {loading && <Loader />}
-        {/* {items.length ? <Button /> : null} */}
+        <ImageGallery pictures={pictures} />
+        {loading && !pictures.length && <Loader />}
+        {pictures.length && pictures.length < totalPictures ? (
+          <Button handleLoadMore={this.handleLoadMore} />
+        ) : null}
       </div>
     );
   }

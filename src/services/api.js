@@ -1,16 +1,15 @@
 import axios from 'axios';
 
-axios.defaults.baseURL = 'https://pixabay.com/api/';
+axios.defaults.baseURL = 'https://pixabay.com/';
 
-export const fetchPhoto = async query => {
-  const { data } = await axios.get('', {
+export const fetchPictures = async (query, page) => {
+  const { data } = await axios.get('api/', {
     params: {
       key: '42006022-41a20d969efbb704c546dcbcd',
       q: query,
-      page: 1,
+      page: page,
       per_page: 12,
     },
   });
-  console.log(data);
   return data;
 };
