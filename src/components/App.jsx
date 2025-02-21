@@ -3,6 +3,7 @@ import Searchbar from './Gallery/Searchbar';
 import { ImageGallery } from './Gallery/ImageGallery';
 import { Loader } from './Gallery/Loader';
 import { Button } from './Gallery/Button';
+import Modal from './Gallery/Modal';
 import { fetchPictures } from 'services/api';
 import s from './styles.module.css';
 
@@ -14,6 +15,8 @@ export default class App extends Component {
     page: 1,
     loading: false,
     error: null,
+    isOpen: false,
+    content: 0,
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -46,16 +49,30 @@ export default class App extends Component {
     this.setState(prev => ({ page: prev.page + 1 }));
   };
 
+  handleToggleModal = () => {
+    this.setState(prev => ({ isOpen: !prev.isOpen }));
+  };
+
+  handleSeeBigPicture = content => {
+    this.setState({ isOpen: true, content });
+  };
+
   render() {
-    const { pictures, loading, totalPictures } = this.state;
+    const { pictures, loading, totalPictures, isOpen, content } = this.state;
     return (
       <div className={s.App}>
         <Searchbar handleSetQuery={this.handleSetQuery} />
-        <ImageGallery pictures={pictures} />
+        <ImageGallery
+          pictures={pictures}
+          openModal={this.handleSeeBigPicture}
+        />
         {loading && !pictures.length && <Loader />}
         {pictures.length && pictures.length < totalPictures ? (
           <Button handleLoadMore={this.handleLoadMore} />
         ) : null}
+        {isOpen && (
+          <Modal closeModal={this.handleToggleModal} content={content} />
+        )}
       </div>
     );
   }
