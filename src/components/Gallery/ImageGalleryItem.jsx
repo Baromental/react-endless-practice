@@ -1,14 +1,19 @@
 import React from 'react';
 import s from '../styles.module.css';
 
-export const ImageGalleryItem = ({ webformatURL, category }) => {
+export const ImageGalleryItem = ({
+  webformatURL,
+  largeImageURL,
+  openModal,
+}) => {
   return (
     <>
-      <li className={s.ImageGalleryItem}>
+      <li class={s.ImageGalleryItem}>
         <img
           className={s.ImageGalleryItem_image}
           src={webformatURL}
-          alt={category}
+          alt={largeImageURL}
+          onClick={() => openModal({ largeImageURL })}
         />
       </li>
     </>

@@ -4,8 +4,8 @@ import s from '../styles.module.css';
 export const Modal = () => {
   return (
     <div>
-      <div class="overlay">
-        <div class="modal">
+      <div className={s.Overlay}>
+        <div className={s.Overlay}>
           <img src="" alt="" />
         </div>
       </div>
