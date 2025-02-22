@@ -8,17 +8,14 @@ import { fetchPictures } from 'services/api';
 import s from './styles.module.css';
 
 export default class App extends Component {
-  state = {
-    query: '',
-    pictures: [],
-    totalPictures: 0,
-    page: 1,
-    loading: false,
-    error: null,
-    isOpen: false,
-    content: 0,
-  };
-
+  const [images, setImages] = useState([]);
+  const [query, setQuery] = useState('');
+  const [page, setPage] = useState(1);
+  const [largeImageURL, setLargeImageURL] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [hasMoreImages, setHasMoreImages] = useState(true);
+  
   async componentDidUpdate(prevProps, prevState) {
     if (
       prevState.query !== this.state.query ||
