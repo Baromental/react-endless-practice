@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { useState  } from 'react';
 import Searchbar from './Gallery/Searchbar';
 import { ImageGallery } from './Gallery/ImageGallery';
 import { Loader } from './Gallery/Loader';
@@ -7,7 +7,27 @@ import Modal from './Gallery/Modal';
 import { fetchPictures } from 'services/api';
 import s from './styles.module.css';
 
-export default class App extends Component {
+export default function App() {
+  // state = {
+  //   query: '',
+  //   pictures: [],
+  //   totalPictures: 0,
+  //   page: 1,
+  //   loading: false,
+  //   error: null,
+  //   isOpen: false,
+  //   content: 0,
+  // };
+
+const [query, setQuery] = useState('');
+const [pictures, setPictures] = useState([]);
+const [totalPictures, setTotalPictures] = useState(0);
+const [page, setPage] = useState(1);
+const [loading, setLoading] = useState(false);
+const [error, setError] = useState(null);
+const [isOpen, setIsOpen] = useState(false);
+const [content, setContent] = useState(0);
+
   async componentDidUpdate(prevProps, prevState) {
     if (
       prevState.query !== this.state.query ||
@@ -46,8 +66,7 @@ export default class App extends Component {
     this.setState({ isOpen: true, content });
   };
 
-  render() {
-    const { pictures, loading, totalPictures, isOpen, content } = this.state;
+ 
     return (
       <div className={s.App}>
         <Searchbar handleSetQuery={this.handleSetQuery} />
@@ -64,5 +83,4 @@ export default class App extends Component {
         )}
       </div>
     );
-  }
 }
