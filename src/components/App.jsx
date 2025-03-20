@@ -94,6 +94,7 @@ export default function App() {
       <Searchbar handleSetQuery={handleSetQuery} />
       <ImageGallery pictures={pictures} openModal={handleSeeBigPicture} />
       {loading && !pictures.length && <Loader />}
+      {error && <h2>Something went wrong!! Try again</h2>}
       {pictures.length && pictures.length < totalPictures ? (
         <Button handleLoadMore={handleLoadMore} />
       ) : null}
