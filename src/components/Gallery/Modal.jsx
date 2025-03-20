@@ -1,43 +1,44 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import s from '../styles.module.css';
 
-class Modal extends React.Component {
-  intervalId = null;
-  timeoutId = null;
-
-  componentDidMount() {
+export default function Modal({ closeModal, content }) {
+  useEffect(() => {
     document.body.style.overflowY = 'hidden';
-    document.addEventListener('keydown', this.handleKeyDown);
-  }
+    const handleKeyDown = e => {
+      if (e.key === 'Escape') {
+        closeModal();
+      }
+    };
+    document.addEventListener('keydown', handleKeyDown);
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      document.body.style.overflowY = 'auto';
+    };
+  }, [closeModal]);
 
-  componentWillUnmount() {
-    document.body.style.overflowY = 'auto';
-    document.removeEventListener('keydown', this.handleKeyDown);
-    clearInterval(this.intervalId);
-    clearTimeout(this.timeoutId);
-  }
+  // componentDidMount() {
+  //   document.body.style.overflowY = 'hidden';
+  //   document.addEventListener('keydown', this.handleKeyDown);
+  // }
 
-  handleKeyDown = e => {
-    if (e.key === 'Escape') {
-      this.props.closeModal();
-    }
-  };
+  // componentWillUnmount() {
+  //   document.body.style.overflowY = 'auto';
+  //   document.removeEventListener('keydown', this.handleKeyDown);
+  //   clearInterval(this.intervalId);
+  //   clearTimeout(this.timeoutId);
+  // }
 
-  handleBackdropClick = e => {
+  const handleBackdropClick = e => {
     if (e.target === e.currentTarget) {
-      this.props.closeModal();
+      closeModal();
     }
   };
 
-  render() {
-    return (
-      <div className={s.Overlay}>
-        <div onClick={this.handleBackdropClick} className={s.Overlay}>
-          <img src={this.props.content.largeImageURL} alt="" />
-        </div>
+  return (
+    <div className={s.Overlay}>
+      <div onClick={handleBackdropClick} className={s.Overlay}>
+        <img src={content.largeImageURL} alt="" />
       </div>
-    );
-  }
+    </div>
+  );
 }
-
-export default Modal;
