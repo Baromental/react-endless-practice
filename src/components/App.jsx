@@ -1,9 +1,9 @@
-import Phonebook from './Phonebook/Phonebook';
+import Feedback from './Feedback/Feedback';
 
 function App() {
   return (
     <div>
-      <Phonebook />
+      <Feedback />
     </div>
   );
 }
