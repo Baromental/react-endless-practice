@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import ContactForm from './ContactForm';
 import { ContactList } from './ContactList';
 import { Filter } from './Filter';
@@ -23,6 +23,30 @@ export default function Phonebook() {
     { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
   ]);
   const [filter, setFilter] = useState('');
+
+  useEffect(() => {
+    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+    if (storedContacts?.length) {
+      setContacts(storedContacts);
+    }
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts));
+  }, [contacts]);
+
+  // componentDidMount() {
+  //   const contacts = JSON.parse(localStorage.getItem('contacts'));
+  //   if (contacts?.length) {
+  //     this.setState({ contacts });
+  //   }
+  // }
+
+  // componentDidUpdate(prevProps, prevState) {
+  //   if (prevState.contacts !== this.state.contacts) {
+  //     localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+  //   }
+  // }
 
   const hadleAddContact = ({ name, number }) => {
     const newContact = {
