@@ -1,4 +1,4 @@
-import { Feedback } from './Feedback/Feedback';
+import Feedback from './Feedback/Feedback';
 
 function App() {
   return (
