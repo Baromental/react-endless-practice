@@ -1,51 +1,71 @@
-import React from 'react';
+import React, { useState } from 'react';
 import s from './Phonebook.module.css';
-export class ContactForm extends React.Component {
-  state = {
-    name: '',
-    number: '',
-  };
 
-  handleChangeInput = e => {
+export default function ContactForm({ addContact }) {
+  // state = {
+  //   name: '',
+  //   number: '',
+  // };
+
+  const [name, setName] = useState('');
+  const [number, setNumber] = useState('');
+
+  const handleChangeInput = e => {
     const { name, value } = e.target;
-    this.setState({ [name]: value });
+    // this.setState({ [name]: value });
+
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    // switch (name) {
+    //   case 'name':
+    //     return setName(value);
+    //   case 'number':
+    //     return setNumber(value);
+    //   default:
+    //     break;
+    // }
+    //!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    if (name === 'name') {
+      setName(value);
+    } else if (name === 'number') {
+      setNumber(value);
+    }
   };
 
-  handleSubmit = e => {
+  const handleSubmit = e => {
     e.preventDefault();
-    const { name, number } = this.state;
-    this.props.addContact({ name, number });
-    this.setState({ name: '', number: '' });
+    // const { name, number } = this.state;
+    addContact({ name, number });
+    // this.setState({ name: '', number: '' });
+    setName('');
+    setNumber('');
   };
 
-  render() {
-    const { name, number } = this.state;
-    return (
-      <>
-        <form className={s.wrapper} onSubmit={this.handleSubmit} action="">
-          <label htmlFor="">
-            Name
-            <input
-              type="text"
-              name="name"
-              onChange={this.handleChangeInput}
-              value={name}
-              required
-            />
-          </label>
-          <label htmlFor="">
-            Number
-            <input
-              type="tel"
-              name="number"
-              onChange={this.handleChangeInput}
-              value={number}
-              required
-            />
-          </label>
-          <button>Add contact</button>
-        </form>
-      </>
-    );
-  }
+  // const { name, number } = this.state;
+  return (
+    <>
+      <form className={s.wrapper} onSubmit={handleSubmit} action="">
+        <label htmlFor="">
+          Name
+          <input
+            type="text"
+            name="name"
+            onChange={handleChangeInput}
+            value={name}
+            required
+          />
+        </label>
+        <label htmlFor="">
+          Number
+          <input
+            type="tel"
+            name="number"
+            onChange={handleChangeInput}
+            value={number}
+            required
+          />
+        </label>
+        <button>Add contact</button>
+      </form>
+    </>
+  );
 }
