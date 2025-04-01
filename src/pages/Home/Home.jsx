@@ -1,6 +1,6 @@
 import React from 'react';
 
-export const Home = () => {
+const Home = () => {
   return (
     <div>
       <h2>Trending today</h2>
@@ -10,3 +10,5 @@ export const Home = () => {
     </div>
   );
 };
+
+export default Home;
