@@ -18,8 +18,11 @@ export const fetchTrendingMovies = async () => {
 };
 
 export const fetchSearchMovies = async query => {
-  const { data } = await axios.get('search/movie', options);
-  return data;
+  const { data } = await axios.get('search/movie', {
+    params: { query },
+    ...options,
+  });
+  return data.results;
 };
 
 export const fetchMovieDetails = async id => {
@@ -34,5 +37,5 @@ export const fetchMovieCredits = async id => {
 
 export const fetchMovieReviews = async id => {
   const { data } = await axios.get(`movie/${id}/reviews`, options);
-  return data;
+  return data.results;
 };
