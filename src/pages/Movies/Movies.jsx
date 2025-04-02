@@ -1,5 +1,17 @@
 import React from 'react';
 
-export const Movies = () => {
-  return <div>Movies</div>;
+const Movies = () => {
+  return (
+    <div>
+      <form action="">
+        <input type="text" />
+        <button></button>
+        <ul>
+          <li></li>
+        </ul>
+      </form>
+    </div>
+  );
 };
+
+export default Movies;
