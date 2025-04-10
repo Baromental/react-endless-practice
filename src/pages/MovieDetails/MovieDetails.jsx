@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useParams } from 'react-router';
+import { Link, Outlet, useParams } from 'react-router';
 import { fetchMovieDetails } from 'services/api';
 
 const MovieDetails = () => {
@@ -42,14 +42,15 @@ const MovieDetails = () => {
         <div>
           <ul>
             <li>
-              <Link></Link>
+              <Link to="cast">Cast</Link>
             </li>
             <li>
-              <Link></Link>
+              <Link to="reviews">Reviews</Link>
             </li>
           </ul>
         </div>
       </div>
+      <Outlet />
     </div>
   );
 };
