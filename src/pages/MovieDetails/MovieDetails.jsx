@@ -13,8 +13,6 @@ const MovieDetails = () => {
       .catch(error => setError(error.message));
   }, [movieId]);
 
-  console.log(movieId);
-
   if (!movie) {
     return <h1>Loading...</h1>;
   }
@@ -41,6 +39,7 @@ const MovieDetails = () => {
         </div>
         <div>
           <ul>
+            Additional information
             <li>
               <Link to="cast">Cast</Link>
             </li>

@@ -13,9 +13,22 @@ const Reviews = () => {
       .catch(error => setError(error.message));
   }, [movieId]);
 
-  console.log(reviews);
-
-  return <div>Reviews</div>;
+  return (
+    <div>
+      <ul>
+        {reviews.length === 0 ? (
+          <p>No reviews yet.</p>
+        ) : (
+          reviews.map(review => (
+            <li key={review.id}>
+              Author: {review.author}
+              <p>{review.content}</p>
+            </li>
+          ))
+        )}
+      </ul>
+    </div>
+  );
 };
 
 export default Reviews;
