@@ -1,12 +1,13 @@
-import React from 'react';
-import { Link, Outlet, useParams } from 'react-router';
+import React, { useRef } from 'react';
+import { Link, Outlet, useLocation, useParams } from 'react-router';
 
 import { useHttp } from 'hooks/useHttp';
 import { fetchMovieDetails } from 'services/api';
 
 const MovieDetails = () => {
   const { movieId } = useParams();
-
+  const location = useLocation();
+  const goBackRef = useRef(location.state?.from || '/');
   const [movie] = useHttp(fetchMovieDetails, movieId);
 
   if (!movie) {
@@ -15,7 +16,7 @@ const MovieDetails = () => {
 
   return (
     <div>
-      <Link></Link>
+      <Link to={goBackRef.current}>Go back</Link>
       <div>
         <img
           src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
