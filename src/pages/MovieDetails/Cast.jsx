@@ -1,20 +1,16 @@
-import React, { useEffect } from 'react';
-import { useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
+
+import { useHttp } from 'hooks/useHttp';
 import { fetchMovieCredits } from 'services/api';
 
 const Cast = () => {
   const { movieId } = useParams();
-  const [cast, setCast] = useState([]);
-  const [error, setError] = useState(null);
+  const [cast] = useHttp(fetchMovieCredits, movieId);
 
-  useEffect(() => {
-    fetchMovieCredits(movieId)
-      .then(data => setCast(data.cast))
-      .catch(error => setError(error.message));
-  }, [movieId]);
-
-  console.log(cast);
+  if (!cast) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>

@@ -1,17 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useParams } from 'react-router';
+
+import { useHttp } from 'hooks/useHttp';
 import { fetchMovieReviews } from 'services/api';
 
 const Reviews = () => {
   const { movieId } = useParams();
-  const [reviews, setReviews] = useState([]);
-  const [error, setError] = useState(null);
+  const [reviews] = useHttp(fetchMovieReviews, movieId);
 
-  useEffect(() => {
-    fetchMovieReviews(movieId)
-      .then(data => setReviews(data))
-      .catch(error => setError(error.message));
-  }, [movieId]);
+  if (!reviews) {
+    return <p>Loading...</p>;
+  }
 
   return (
     <div>

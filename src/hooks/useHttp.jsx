@@ -7,7 +7,7 @@ export const useHttp = (fn, param) => {
   useEffect(() => {
     fn(param)
       .then(data => setData(data))
-      .catch(err => setError(err.message));
+      .catch(error => setError(error.message));
   }, [fn, param]);
   return [data, setData, error];
 };
