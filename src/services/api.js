@@ -13,7 +13,6 @@ const options = {
 
 export const fetchTrendingMovies = async () => {
   const { data } = await axios.get('trending/all/day', options);
-  console.log(data);
   return data.results;
 };
 

@@ -1,13 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation } from 'react-router';
 
 import { useHttp } from 'hooks/useHttp';
 import { fetchTrendingMovies } from 'services/api';
 
 const Home = () => {
+  const location = useLocation();
   const [movies] = useHttp(fetchTrendingMovies);
-
-  console.log(movies);
 
   return (
     <div>
@@ -15,7 +14,7 @@ const Home = () => {
       <ul>
         {movies?.map(movie => (
           <li key={movie.id}>
-            <Link to={`movies/${movie.id.toString()}`}>
+            <Link state={{ from: location }} to={`movies/${movie.id}`}>
               {movie.title || movie.name}
             </Link>
           </li>
