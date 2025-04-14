@@ -1,19 +1,23 @@
 import { useHttp } from 'hooks/useHttp';
 import React from 'react';
-import { Link } from 'react-router';
+import { Link, useLocation, useSearchParams } from 'react-router';
 import { fetchSearchMovies } from 'services/api';
 import Form from './Form';
 
 const Movies = () => {
-  const [movies, setMovies] = useHttp(fetchSearchMovies);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const location = useLocation();
+  const query = searchParams.get('query');
+  const [movies] = useHttp(fetchSearchMovies, query);
   return (
     <div>
       <ul>
-        <Form />
+        <Form setSearchParams={setSearchParams} />
         {movies?.map(movie => (
           <li key={movie.id}>
-            {movie.title || movie.name}
-            <Link to={movie.id.toString()}>{movie.title || movie.name}</Link>
+            <Link state={{ from: location }} to={movie.id.toString()}>
+              {movie.title || movie.name}
+            </Link>
           </li>
         ))}
       </ul>
