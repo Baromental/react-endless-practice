@@ -1,8 +1,10 @@
-import { useHttp } from 'hooks/useHttp';
 import React from 'react';
 import { Link, useLocation, useSearchParams } from 'react-router';
-import { fetchSearchMovies } from 'services/api';
+
 import Form from './Form';
+
+import { useHttp } from 'hooks/useHttp';
+import { fetchSearchMovies } from 'services/api';
 
 const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();

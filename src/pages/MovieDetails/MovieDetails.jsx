@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { Suspense, useRef } from 'react';
 import { Link, Outlet, useLocation, useParams } from 'react-router';
 
 import { useHttp } from 'hooks/useHttp';
@@ -46,7 +46,9 @@ const MovieDetails = () => {
           </ul>
         </div>
       </div>
-      <Outlet />
+      <Suspense fallback={<h1>Loading information...</h1>}>
+        <Outlet />
+      </Suspense>
     </div>
   );
 };
