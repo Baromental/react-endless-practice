@@ -1,13 +1,27 @@
 {
   "files": {
     "main.css": "/react-endless-practice/static/css/main.1842d650.css",
-    "main.js": "/react-endless-practice/static/js/main.818cd155.js",
+    "main.js": "/react-endless-practice/static/js/main.640a5223.js",
+    "static/js/544.641770ad.chunk.js": "/react-endless-practice/static/js/544.641770ad.chunk.js",
+    "static/js/167.5ee02ca9.chunk.js": "/react-endless-practice/static/js/167.5ee02ca9.chunk.js",
+    "static/js/961.8d471ee4.chunk.js": "/react-endless-practice/static/js/961.8d471ee4.chunk.js",
+    "static/js/953.283dbf20.chunk.js": "/react-endless-practice/static/js/953.283dbf20.chunk.js",
+    "static/js/605.a3518812.chunk.js": "/react-endless-practice/static/js/605.a3518812.chunk.js",
+    "static/js/16.37f2221b.chunk.js": "/react-endless-practice/static/js/16.37f2221b.chunk.js",
+    "static/js/134.f71e4a14.chunk.js": "/react-endless-practice/static/js/134.f71e4a14.chunk.js",
     "index.html": "/react-endless-practice/index.html",
     "main.1842d650.css.map": "/react-endless-practice/static/css/main.1842d650.css.map",
-    "main.818cd155.js.map": "/react-endless-practice/static/js/main.818cd155.js.map"
+    "main.640a5223.js.map": "/react-endless-practice/static/js/main.640a5223.js.map",
+    "544.641770ad.chunk.js.map": "/react-endless-practice/static/js/544.641770ad.chunk.js.map",
+    "167.5ee02ca9.chunk.js.map": "/react-endless-practice/static/js/167.5ee02ca9.chunk.js.map",
+    "961.8d471ee4.chunk.js.map": "/react-endless-practice/static/js/961.8d471ee4.chunk.js.map",
+    "953.283dbf20.chunk.js.map": "/react-endless-practice/static/js/953.283dbf20.chunk.js.map",
+    "605.a3518812.chunk.js.map": "/react-endless-practice/static/js/605.a3518812.chunk.js.map",
+    "16.37f2221b.chunk.js.map": "/react-endless-practice/static/js/16.37f2221b.chunk.js.map",
+    "134.f71e4a14.chunk.js.map": "/react-endless-practice/static/js/134.f71e4a14.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.1842d650.css",
-    "static/js/main.818cd155.js"
+    "static/js/main.640a5223.js"
   ]
 }
