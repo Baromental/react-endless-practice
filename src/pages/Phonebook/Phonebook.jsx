@@ -5,43 +5,39 @@ import { Filter } from './Filter';
 import { nanoid } from 'nanoid';
 import s from './Phonebook.module.css';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectContacts, selectFilter } from 'redux/phonebook/selectors';
+import { selectContacts, selectFilter } from '../../redux/phonebook/selectors';
 
 export default function Phonebook() {
   const contacts = useSelector(selectContacts);
   const filter = useSelector(selectFilter);
-  const dispatch = useDispatch();
+  // const dispatch = useDispatch();
 
-  useEffect(() => {
-    const storedContacts = JSON.parse(localStorage.getItem('contacts'));
-    if (storedContacts?.length) {
-      setContacts(storedContacts);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const storedContacts = JSON.parse(localStorage.getItem('contacts'));
+  //   if (storedContacts?.length) {
+  //     setContacts(storedContacts);
+  //   }
+  // }, []);
 
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts));
-  }, [contacts]);
+  // useEffect(() => {
+  //   localStorage.setItem('contacts', JSON.stringify(contacts));
+  // }, [contacts]);
 
-  const handleAddContact = ({ name, number }) => {
-    const newContact = {
-      id: nanoid(),
-      name: name,
-      number: number,
-    };
-    if (contacts.some(contact => contact.name === name)) {
-      return alert(`${name} already in contacts.`);
-    }
-    setContacts(prev => [...prev, newContact]);
-  };
+  // const handleAddContact = ({ name, number }) => {
+  //   const newContact = {
+  //     id: nanoid(),
+  //     name: name,
+  //     number: number,
+  //   };
+  //   if (contacts.some(contact => contact.name === name)) {
+  //     return alert(`${name} already in contacts.`);
+  //   }
+  //   setContacts(prev => [...prev, newContact]);
+  // };
 
-  const handleDeleteContact = id => {
-    setContacts(prev => prev.filter(contact => contact.id !== id));
-  };
-
-  const getFilteredContact = e => {
-    setFilter(e.target.value);
-  };
+  // const getFilteredContact = e => {
+  //   setFilter(e.target.value);
+  // };
 
   const loweredFilter = filter.toLowerCase();
   const visibleContacts = contacts.filter(
@@ -53,10 +49,10 @@ export default function Phonebook() {
   return (
     <div className={s.wrapper}>
       <h1>Phonebook</h1>
-      <ContactForm addContact={handleAddContact} />
+      <ContactForm />
       <h2>Contacts</h2>
       <Filter onFilter={getFilteredContact} filter={filter} />
-      <ContactList onDelete={handleDeleteContact} contacts={visibleContacts} />
+      <ContactList contacts={visibleContacts} />
     </div>
   );
 }
