@@ -1,17 +1,14 @@
 import React from 'react';
-import s from './Phonebook.module.css';
 import { useForm } from 'react-hook-form';
-import { nanoid } from 'nanoid';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/phonebook/actions';
+import { addContact } from '../../redux/phonebook/slice';
+import s from './Phonebook.module.css';
 
 export default function ContactForm() {
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
   const submit = ({ name, number }) => {
-    const newContact = { name, number, id: nanoid() };
-    console.log(newContact);
-    dispatch(addContact(newContact));
+    dispatch(addContact({ name, number }));
     reset();
   };
 
