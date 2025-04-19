@@ -1,4 +1,4 @@
-import { ADD_CONTACT, REMOVE_CONTACT, SET_FILTER } from './constans';
+import { addContact, removeContact, setFilter } from './actions';
 
 const initialState = {
   contacts: [],
@@ -7,19 +7,19 @@ const initialState = {
 
 export const phonebookReducer = (state = initialState, action) => {
   switch (action.type) {
-    case REMOVE_CONTACT:
+    case addContact.type:
+      return {
+        ...state,
+        contacts: [...state.contacts, action.payload],
+      };
+    case removeContact.type:
       return {
         ...state,
         contacts: state.contacts.filter(
           contact => contact.id !== action.payload
         ),
       };
-    case ADD_CONTACT:
-      return {
-        ...state,
-        contacts: [...state.contacts, action.payload],
-      };
-    case SET_FILTER:
+    case setFilter.type:
       return {
         ...state,
         filter: action.payload,
