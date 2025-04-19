@@ -1,7 +1,7 @@
-import { createStore } from 'redux';
+import { configureStore } from '@reduxjs/toolkit';
 import { phonebookReducer } from './phonebook/reducers';
 
-export const store = createStore(
-  phonebookReducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-);
+export const store = configureStore({
+  reducer: { phonebookReducer },
+  devTools: process.env.NODE_ENV !== 'production',
+});
