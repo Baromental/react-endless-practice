@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { selectFilter } from '../../redux/phonebook/selectors';
-import { setFilter } from '../../redux/phonebook/actions';
+import { selectFilter, setFilter } from '../../redux/phonebook/slice';
 
 export const Filter = () => {
   const filter = useSelector(selectFilter);

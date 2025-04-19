@@ -1,8 +1,10 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { removeContact } from '../../redux/phonebook/actions';
-import { selectContacts, selectFilter } from '../../redux/phonebook/selectors';
-
+import {
+  removeContact,
+  selectContacts,
+  selectFilter,
+} from '../../redux/phonebook/slice';
 import s from './Phonebook.module.css';
 
 export const ContactList = () => {
