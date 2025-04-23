@@ -1,34 +1,39 @@
-// import { configureStore } from '@reduxjs/toolkit';
-// import { phonebookReducer } from './phonebook/slice';
-// import {
-//   persistStore,
-//   persistReducer,
-//   FLUSH,
-//   REHYDRATE,
-//   PAUSE,
-//   PERSIST,
-//   PURGE,
-//   REGISTER,
-// } from 'redux-persist';
-// import storage from 'redux-persist/lib/storage';
+import { configureStore } from '@reduxjs/toolkit';
+import { phonebookReducer } from './phonebook/slice';
+import {
+  persistStore,
+  persistReducer,
+  FLUSH,
+  REHYDRATE,
+  PAUSE,
+  PERSIST,
+  PURGE,
+  REGISTER,
+} from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
+import logger from 'redux-logger';
 
-// const persistConfig = {
-//   key: 'root',
-//   version: 1,
-//   storage,
-// };
+const myMiddleware = store => next => action => {
+  next(action);
+};
 
-// const persistedReducer = persistReducer(persistConfig, phonebookReducer);
+const persistConfig = {
+  key: 'root',
+  version: 1,
+  storage,
+};
 
-// export const store = configureStore({
-//   reducer: { phonebook: persistedReducer },
-//   middleware: getDefaultMiddleware =>
-//     getDefaultMiddleware({
-//       serializableCheck: {
-//         ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
-//       },
-//     }),
-//   devTools: process.env.NODE_ENV !== 'production',
-// });
+const persistedReducer = persistReducer(persistConfig, phonebookReducer);
 
-// export let persistor = persistStore(store);
+export const store = configureStore({
+  reducer: { phonebook: persistedReducer },
+  middleware: getDefaultMiddleware =>
+    getDefaultMiddleware({
+      serializableCheck: {
+        ignoredActions: [FLUSH, REHYDRATE, PAUSE, PERSIST, PURGE, REGISTER],
+      },
+    }).concat(logger, myMiddleware),
+  devTools: process.env.NODE_ENV !== 'production',
+});
+
+export let persistor = persistStore(store);

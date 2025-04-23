@@ -1,14 +1,20 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useDispatch } from 'react-redux';
-import { addContact } from '../../redux/phonebook/slice';
+import { addContactThunk } from '../../redux/phonebook/operations';
 import s from './Phonebook.module.css';
 
 export default function ContactForm() {
   const { register, handleSubmit, reset } = useForm();
   const dispatch = useDispatch();
   const submit = ({ name, number }) => {
-    dispatch(addContact({ name, number }));
+    dispatch(
+      addContactThunk({
+        name,
+        number,
+        createdAt: new Date().toLocaleTimeString(),
+      })
+    );
     reset();
   };
 

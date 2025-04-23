@@ -1,10 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import {
-  removeContact,
-  selectContacts,
-  selectFilter,
-} from '../../redux/phonebook/slice';
+import { selectContacts, selectFilter } from '../../redux/phonebook/slice';
+import { deleteContactThunk } from '../../redux/phonebook/operations';
 import s from './Phonebook.module.css';
 
 export const ContactList = () => {
@@ -25,7 +22,9 @@ export const ContactList = () => {
         {visibleContacts.map(({ id, name, number }) => (
           <li key={id}>
             {name}: {number}
-            <button onClick={() => dispatch(removeContact(id))}>Delete</button>
+            <button onClick={() => dispatch(deleteContactThunk(id))}>
+              Delete
+            </button>
           </li>
         ))}
       </ul>
