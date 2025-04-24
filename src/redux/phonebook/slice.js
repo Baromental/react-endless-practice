@@ -1,4 +1,9 @@
 import { createSlice } from '@reduxjs/toolkit';
+import {
+  addContactThunk,
+  deleteContactThunk,
+  fetchContactsThunk,
+} from './operations';
 
 const initialState = {
   contacts: [],
@@ -33,6 +38,44 @@ const slice = createSlice({
     setFilter: (state, { payload }) => {
       state.filter = payload;
     },
+  },
+  extraReducers: builder => {
+    builder
+      .addCase(fetchContactsThunk.pending, state => {
+        state.loading = true;
+      })
+      .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
+        state.contacts = payload;
+        state.loading = false;
+      })
+      .addCase(fetchContactsThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+      .addCase(deleteContactThunk.pending, state => {
+        state.loading = true;
+      })
+      .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
+        state.contacts = state.contacts.filter(
+          contact => contact.id !== payload
+        );
+        state.loading = false;
+      })
+      .addCase(deleteContactThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      })
+      .addCase(addContactThunk.pending, state => {
+        state.loading = true;
+      })
+      .addCase(addContactThunk.fulfilled, (state, { payload }) => {
+        state.contacts.push(payload);
+        state.loading = false;
+      })
+      .addCase(addContactThunk.rejected, (state, { payload }) => {
+        state.error = payload;
+        state.loading = false;
+      });
   },
   selectors: {
     selectContacts: state => state.contacts,
