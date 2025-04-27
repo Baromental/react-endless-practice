@@ -77,12 +77,12 @@ const slice = createSlice({
         state.loading = false;
       });
   },
-  // selectors: {
-  //   selectContacts: state => state.contacts,
-  //   selectFilter: state => state.filter,
-  //   selectIsLoading: state => state.loading,
-  //   selectError: state => state.error,
-  // },
+  selectors: {
+    selectContacts: state => state.contacts,
+    selectFilter: state => state.filter,
+    selectIsLoading: state => state.loading,
+    selectError: state => state.error,
+  },
 });
 
 export const phonebookReducer = slice.reducer;
