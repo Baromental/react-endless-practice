@@ -6,10 +6,12 @@ import {
 } from './operations';
 
 const initialState = {
-  contacts: [],
+  contacts: {
+    items: [],
+    isLoading: false,
+    error: null,
+  },
   filter: '',
-  loading: false,
-  error: null,
 };
 
 const slice = createSlice({
@@ -17,23 +19,25 @@ const slice = createSlice({
   initialState,
   reducers: {
     fetchIsDone: (state, { payload }) => {
-      state.contacts = payload;
-      state.loading = false;
+      state.contacts.items = payload;
+      state.contacts.isLoading = false;
     },
     isLoading: (state, { payload }) => {
-      state.loading = true;
+      state.contacts.isLoading = true;
     },
     isError: (state, { payload }) => {
-      state.error = payload;
+      state.contacts.error = payload;
     },
     clearError: state => {
-      state.error = null;
+      state.contacts.error = null;
     },
     addContact: (state, { payload }) => {
-      state.contacts.push(payload);
+      state.contacts.items.push(payload);
     },
     removeContact: (state, { payload }) => {
-      state.contacts = state.contacts.filter(contact => contact.id !== payload);
+      state.contacts.items = state.contacts.items.filter(
+        contact => contact.id !== payload
+      );
     },
     setFilter: (state, { payload }) => {
       state.filter = payload;
@@ -42,46 +46,46 @@ const slice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(fetchContactsThunk.pending, state => {
-        state.loading = true;
+        state.contacts.isLoading = true;
       })
       .addCase(fetchContactsThunk.fulfilled, (state, { payload }) => {
-        state.contacts = payload;
-        state.loading = false;
+        state.contacts.items = payload;
+        state.contacts.isLoading = false;
       })
       .addCase(fetchContactsThunk.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.loading = false;
+        state.contacts.error = payload;
+        state.contacts.isLoading = false;
       })
       .addCase(deleteContactThunk.pending, state => {
-        state.loading = true;
+        state.contacts.isLoading = true;
       })
       .addCase(deleteContactThunk.fulfilled, (state, { payload }) => {
-        state.contacts = state.contacts.filter(
+        state.contacts.items = state.contacts.items.filter(
           contact => contact.id !== payload
         );
-        state.loading = false;
+        state.contacts.isLoading = false;
       })
       .addCase(deleteContactThunk.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.loading = false;
+        state.contacts.error = payload;
+        state.contacts.isLoading = false;
       })
       .addCase(addContactThunk.pending, state => {
-        state.loading = true;
+        state.contacts.isLoading = true;
       })
       .addCase(addContactThunk.fulfilled, (state, { payload }) => {
-        state.contacts.push(payload);
-        state.loading = false;
+        state.contacts.items.push(payload);
+        state.contacts.isLoading = false;
       })
       .addCase(addContactThunk.rejected, (state, { payload }) => {
-        state.error = payload;
-        state.loading = false;
+        state.contacts.error = payload;
+        state.contacts.isLoading = false;
       });
   },
   selectors: {
-    selectContacts: state => state.contacts,
+    selectContacts: state => state.contacts.items,
     selectFilter: state => state.filter,
-    selectIsLoading: state => state.loading,
-    selectError: state => state.error,
+    selectIsLoading: state => state.contacts.isLoading,
+    selectError: state => state.contacts.error,
   },
 });
 
