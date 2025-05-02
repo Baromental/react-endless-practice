@@ -1,16 +1,19 @@
 import React from 'react';
-import { NavLink } from 'react-router-dom';
+import { Link, NavLink } from 'react-router';
+import s from './Navbar.module.css';
 
 export const Navbar = () => {
   return (
-    <div>
-      <h1>Redux | Auth</h1>
+    <div className={s.container}>
+      <Link className={s.homeLink} to="/">
+        Phonebook
+      </Link>
       <div>example@mail.com</div>
       <nav>
         <NavLink to="/">Home</NavLink>
-        <NavLink to="/contacts"></NavLink>
-        <NavLink to="/register"></NavLink>
-        <NavLink to="/login"></NavLink>
+        <NavLink to="/contacts">Contacts</NavLink>
+        <NavLink to="/register">Register</NavLink>
+        <NavLink to="/login">Login</NavLink>
       </nav>
     </div>
   );
