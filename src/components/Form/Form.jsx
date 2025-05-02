@@ -6,9 +6,10 @@ export const Form = () => {
   const { register, reset, handleSubmit } = useForm();
   const submit = data => {
     console.log(data);
+    reset();
   };
   return (
-    <div>
+    <div className={s.container}>
       <form onSubmit={handleSubmit(submit)}>
         <div>
           <label>Name</label>
