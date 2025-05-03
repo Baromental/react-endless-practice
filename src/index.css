@@ -37,6 +37,10 @@ img {
   height: auto;
 }
 
+/* p {
+  all: unset;
+} */
+
 .active {
   color: antiquewhite !important;
   text-decoration: underline !important;

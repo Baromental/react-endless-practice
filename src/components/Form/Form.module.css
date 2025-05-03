@@ -15,7 +15,10 @@
   display: flex;
   flex-direction: column;
   gap: 5px;
+  font-size: 20px;
+  color: chocolate;
   input {
+    color: chocolate;
     padding: 10px;
     border-radius: 8px;
     border-color: transparent;
@@ -24,5 +27,34 @@
   }
   input:focus {
     outline: none;
+  }
+}
+.button {
+  color: chocolate;
+  padding: 10px;
+  margin: 10px 0px;
+  font-size: 15px;
+  background-color: aliceblue;
+  border-radius: 8px;
+  box-shadow: 2px 2px 4px 1px cadetblue;
+  border-color: transparent;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.button:hover {
+  background-color: cadetblue;
+  color: aliceblue;
+  transition: background-color 0.3s, color 0.3s, box-shadow 0.3s;
+}
+.text {
+  color: chocolate;
+  font-size: 20px;
+  margin: 5px;
+  a {
+    text-decoration: none;
+    color: cadetblue;
+  }
+  a:hover {
+    color: brown;
   }
 }
