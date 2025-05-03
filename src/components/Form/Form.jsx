@@ -34,8 +34,8 @@ export const Form = () => {
             type="password"
           />
         </div>
-        <button>Register</button>
-        <p>
+        <button className={s.button}>Register</button>
+        <p className={s.text}>
           If you already have account please go to{' '}
           <Link to="/login">Sign In</Link>
         </p>
