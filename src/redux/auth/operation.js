@@ -12,3 +12,15 @@ export const registerThunk = createAsyncThunk(
     }
   }
 );
+
+export const loginThunk = createAsyncThunk(
+  'login',
+  async (credentials, thunkApi) => {
+    try {
+      const { data } = await contactsApi.post('/users/login', credentials);
+      return data;
+    } catch (error) {
+      return thunkApi.rejectWithValue(error.message);
+    }
+  }
+);

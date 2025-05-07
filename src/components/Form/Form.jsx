@@ -3,19 +3,21 @@ import { useForm } from 'react-hook-form';
 import s from './Form.module.css';
 import { Link } from 'react-router-dom';
 
-export const Form = () => {
+export const Form = ({ onDataSubmit, formType }) => {
   const { register, reset, handleSubmit } = useForm();
   const submit = data => {
-    console.log(data);
+    onDataSubmit(data);
     reset();
   };
   return (
     <div className={s.container}>
       <form className={s.form} onSubmit={handleSubmit(submit)}>
-        <div className={s.input}>
-          <label htmlFor="name">Name:</label>
-          <input id="name" placeholder="Enter name" {...register('name')} />
-        </div>
+        {formType === 'register' && (
+          <div className={s.input}>
+            <label htmlFor="name">Name:</label>
+            <input id="name" placeholder="Enter name" {...register('name')} />
+          </div>
+        )}
         <div className={s.input}>
           <label htmlFor="email">Email:</label>
           <input
@@ -34,10 +36,21 @@ export const Form = () => {
             type="password"
           />
         </div>
-        <button className={s.button}>Register</button>
+        <button className={s.button}>
+          {formType === 'register' ? 'Register' : 'Login'}
+        </button>
         <p className={s.text}>
-          If you already have account please go to{' '}
-          <Link to="/login">Sign In</Link>
+          {formType === 'register' ? (
+            <>
+              If you already have an account please{' '}
+              <Link to="/login">Login</Link>
+            </>
+          ) : (
+            <>
+              If you don't have an account please{' '}
+              <Link to="/register">Register</Link>
+            </>
+          )}
         </p>
       </form>
     </div>
