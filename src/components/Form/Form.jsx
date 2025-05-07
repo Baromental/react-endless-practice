@@ -3,8 +3,10 @@ import { useForm } from 'react-hook-form';
 import s from './Form.module.css';
 import { Link } from 'react-router-dom';
 
-export const Form = ({ onDataSubmit, formType }) => {
-  const { register, reset, handleSubmit } = useForm();
+export const Form = ({ onDataSubmit, formType, values }) => {
+  const { register, reset, handleSubmit } = useForm({
+    defaultValues: values,
+  });
   const submit = data => {
     onDataSubmit(data);
     reset();

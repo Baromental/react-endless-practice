@@ -1,11 +1,16 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { contactsApi } from 'axiosConfug/contactsApi';
+import {
+  contactsApi,
+  removeToken,
+  setToken,
+} from '../../axiosConfig/contactsApi';
 
 export const registerThunk = createAsyncThunk(
   'register',
   async (credentials, thunkApi) => {
     try {
       const { data } = await contactsApi.post('/users/signup', credentials);
+      setToken(data.token);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
@@ -18,9 +23,19 @@ export const loginThunk = createAsyncThunk(
   async (credentials, thunkApi) => {
     try {
       const { data } = await contactsApi.post('/users/login', credentials);
+      setToken(data.token);
       return data;
     } catch (error) {
       return thunkApi.rejectWithValue(error.message);
     }
   }
 );
+
+export const logoutThunk = createAsyncThunk('logout', async (_, thunkApi) => {
+  try {
+    await contactsApi.post('/users/logout');
+    removeToken();
+  } catch (error) {
+    return thunkApi.rejectWithValue(error.message);
+  }
+});
