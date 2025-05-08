@@ -12,7 +12,6 @@ export default function ContactForm() {
       addContactThunk({
         name,
         number,
-        createdAt: new Date().toLocaleTimeString(),
       })
     );
     reset();
