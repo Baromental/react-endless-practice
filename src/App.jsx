@@ -1,5 +1,5 @@
 import { useEffect } from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router';
 import { Layout } from 'components/Layout';
 import { Contacts, Home, Login, NotFound, Register } from 'pages';
@@ -7,13 +7,17 @@ import './index.css';
 import { refreshThunk } from './redux/auth/operation';
 import { PrivateRoute } from 'routes/PrivateRoute';
 import { PublicRoute } from 'routes/PublicRoute';
+import { selectIsRefresh } from './redux/auth/slice';
 
 function App() {
+  const isRefresh = useSelector(selectIsRefresh);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(refreshThunk());
   }, [dispatch]);
-  return (
+  return isRefresh ? (
+    <h1>Loading...</h1>
+  ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Home />} />
