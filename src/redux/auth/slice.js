@@ -15,6 +15,7 @@ const initialState = {
   loading: false,
   error: false,
   isLoggedIn: false,
+  isRefresh: false,
 };
 
 const authSlice = createSlice({
@@ -24,6 +25,7 @@ const authSlice = createSlice({
     selectUser: state => state.user,
     selectIsLoggedIn: state => state.isLoggedIn,
     selectToken: state => state.token,
+    selectIsRefresh: state => state.isRefresh,
   },
   extraReducers: builder => {
     builder
@@ -46,10 +48,14 @@ const authSlice = createSlice({
         state.user.name = payload.user.name;
         state.user.email = payload.user.email;
         state.isLoggedIn = true;
+        state.isRefresh = false;
+      })
+      .addCase(refreshThunk.pending, state => {
+        state.isRefresh = true;
       });
   },
 });
 
 export const authReducer = authSlice.reducer;
-export const { selectUser, selectIsLoggedIn, selectToken } =
+export const { selectUser, selectIsLoggedIn, selectToken, selectIsRefresh } =
   authSlice.selectors;
