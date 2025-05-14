@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useForm } from 'react-hook-form';
-import { FaEye, FaEyeSlash } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
+import { InputField } from './InputField';
+import { PasswordInputField } from './PasswordInputField';
 
 import s from './Form.module.css';
 
 export const Form = ({ onDataSubmit, formType, values }) => {
-  const [type, setType] = useState('password');
   const {
     register,
     reset,
@@ -23,27 +23,36 @@ export const Form = ({ onDataSubmit, formType, values }) => {
     <div className={s.container}>
       <form className={s.form} onSubmit={handleSubmit(submit)}>
         {formType === 'register' && (
-          <div className={s.input}>
-            <label htmlFor="name">Name:</label>
-            <input
-              id="name"
-              placeholder="Enter name"
-              {...register('name', {
-                required: { message: 'Name is required!', value: true },
-                minLength: {
-                  value: 3,
-                  message: 'Name must be more than 3 chars!',
-                },
-                maxLength: {
-                  value: 30,
-                  message: 'Name must be less than 30 chars!',
-                },
-              })}
-            />
-            {errors?.name && <span>{errors.name.message}</span>}
-          </div>
+          <InputField
+            register={register}
+            errors={errors}
+            label="Name:"
+            placeholder="Enter name"
+            name="name"
+          />
         )}
-        <div className={s.input}>
+        <InputField
+          register={register}
+          errors={errors}
+          label="Email:"
+          placeholder="Enter email"
+          name="email"
+        />
+        <PasswordInputField
+          register={register}
+          errors={errors}
+          label="Password:"
+          placeholder="Enter password"
+          name="password"
+        />
+        <PasswordInputField
+          register={register}
+          errors={errors}
+          label="Confirm password:"
+          placeholder="Enter password"
+          name="confirmPassword"
+        />
+        {/* <div className={s.input}>
           <label htmlFor="email">Email:</label>
           <input
             id="email"
@@ -54,34 +63,7 @@ export const Form = ({ onDataSubmit, formType, values }) => {
             type="email"
           />
           {errors?.email && <span>{errors.email.message}</span>}
-        </div>
-        <div className={s.input}>
-          <label htmlFor="password">Password:</label>
-          <input
-            id="password"
-            placeholder="Enter password"
-            {...register('password', {
-              required: { message: 'Password is required!', value: true },
-              minLength: {
-                value: 6,
-                message: 'Password must be more than 6 chars!',
-              },
-              maxLength: {
-                value: 20,
-                message: 'Password must be less than 20 chars!',
-              },
-            })}
-            type={type}
-          />
-          <button
-            type="button"
-            onClick={() => setType(type === 'password' ? 'text' : 'password')}
-            className={s.iconBtn}
-          >
-            {type === 'password' ? <FaEyeSlash /> : <FaEye />}
-          </button>
-          {errors?.password && <span>{errors.password.message}</span>}
-        </div>
+        </div> */}
         <button className={s.button}>
           {formType === 'register' ? 'Register' : 'Login'}
         </button>

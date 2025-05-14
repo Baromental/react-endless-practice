@@ -41,6 +41,9 @@ const authSlice = createSlice({
       .addCase(refreshThunk.pending, state => {
         state.isRefresh = true;
       })
+      .addCase(refreshThunk.rejected, state => {
+        state.isRefresh = false;
+      })
       .addMatcher(
         isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
         (state, { payload }) => {
