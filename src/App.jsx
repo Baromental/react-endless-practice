@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Routes } from 'react-router';
 import { Layout } from 'components/Layout';
+import { Preloader } from 'components/Preloader';
 import { Contacts, Home, Login, NotFound, Register } from 'pages';
 import './index.css';
 import { refreshThunk } from './redux/auth/operation';
@@ -16,7 +17,7 @@ function App() {
     dispatch(refreshThunk());
   }, [dispatch]);
   return isRefresh ? (
-    <h1>Loading...</h1>
+    <Preloader />
   ) : (
     <Routes>
       <Route path="/" element={<Layout />}>
