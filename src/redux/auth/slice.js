@@ -1,4 +1,4 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, isAnyOf } from '@reduxjs/toolkit';
 import {
   loginThunk,
   logoutThunk,
@@ -29,18 +29,6 @@ const authSlice = createSlice({
   },
   extraReducers: builder => {
     builder
-      .addCase(registerThunk.fulfilled, (state, { payload }) => {
-        state.user.name = payload.user.name;
-        state.user.email = payload.user.email;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
-      .addCase(loginThunk.fulfilled, (state, { payload }) => {
-        state.user.name = payload.user.name;
-        state.user.email = payload.user.email;
-        state.token = payload.token;
-        state.isLoggedIn = true;
-      })
       .addCase(logoutThunk.fulfilled, state => {
         return initialState;
       })
@@ -52,7 +40,16 @@ const authSlice = createSlice({
       })
       .addCase(refreshThunk.pending, state => {
         state.isRefresh = true;
-      });
+      })
+      .addMatcher(
+        isAnyOf(registerThunk.fulfilled, loginThunk.fulfilled),
+        (state, { payload }) => {
+          state.user.name = payload.user.name;
+          state.user.email = payload.user.email;
+          state.token = payload.token;
+          state.isLoggedIn = true;
+        }
+      );
   },
 });
 
