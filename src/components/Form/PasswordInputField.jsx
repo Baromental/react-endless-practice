@@ -16,17 +16,7 @@ export const PasswordInputField = ({
       <input
         id={name}
         placeholder={placeholder}
-        {...register(name, {
-          required: { message: 'Password is required!', value: true },
-          minLength: {
-            value: 6,
-            message: 'Password must be more than 6 chars!',
-          },
-          maxLength: {
-            value: 20,
-            message: 'Password must be less than 20 chars!',
-          },
-        })}
+        {...register(name)}
         type={type}
       />
       <button
