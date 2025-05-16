@@ -4,25 +4,10 @@ import { Link } from 'react-router-dom';
 import { InputField } from './InputField';
 import { PasswordInputField } from './PasswordInputField';
 import { yupResolver } from '@hookform/resolvers/yup';
-import * as yup from 'yup';
 
 import s from './Form.module.css';
 
-export const Form = ({ onDataSubmit, formType, values }) => {
-  const schema = yup
-    .object({
-      name: yup
-        .string()
-        .required('Name is required!')
-        .max('Must be less than 15 chars!')
-        .min('Must be more than 3 chars!'),
-      email: yup
-        .string()
-        .required('Email is required!')
-        .email('Email is not valid!'),
-      password: yup.string().required(),
-    })
-    .required();
+export const Form = ({ onDataSubmit, formType, values, schema }) => {
   const {
     register,
     reset,
@@ -62,25 +47,6 @@ export const Form = ({ onDataSubmit, formType, values }) => {
           placeholder="Enter password"
           name="password"
         />
-        <PasswordInputField
-          register={register}
-          errors={errors}
-          label="Confirm password:"
-          placeholder="Enter password"
-          name="confirmPassword"
-        />
-        {/* <div className={s.input}>
-          <label htmlFor="email">Email:</label>
-          <input
-            id="email"
-            placeholder="Enter email"
-            {...register('email', {
-              required: { message: 'Email is required!', value: true },
-            })}
-            type="email"
-          />
-          {errors?.email && <span>{errors.email.message}</span>}
-        </div> */}
         <button className={s.button}>
           {formType === 'register' ? 'Register' : 'Login'}
         </button>

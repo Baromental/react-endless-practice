@@ -4,6 +4,7 @@ import { useDispatch } from 'react-redux';
 import { toast } from 'react-toastify';
 import { loginThunk } from '../../redux/auth/operation';
 import { Form } from 'components/Form/Form';
+import { loginSchema } from '../../schemas/loginSchema';
 
 export const Login = () => {
   const location = useLocation();
@@ -24,9 +25,15 @@ export const Login = () => {
     email: 'petrokiprik@mail.com',
     password: '11111111',
   };
+
   return (
     <div>
-      <Form onDataSubmit={handleLogin} formType="login" values={values} />
+      <Form
+        onDataSubmit={handleLogin}
+        schema={loginSchema}
+        formType="login"
+        values={values}
+      />
     </div>
   );
 };
