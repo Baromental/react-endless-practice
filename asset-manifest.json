@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/react-endless-practice/static/css/main.f9149a09.css",
-    "main.js": "/react-endless-practice/static/js/main.2aa0f56b.js",
+    "main.css": "/react-endless-practice/static/css/main.7b99819e.css",
+    "main.js": "/react-endless-practice/static/js/main.c78ee84f.js",
     "index.html": "/react-endless-practice/index.html",
-    "main.f9149a09.css.map": "/react-endless-practice/static/css/main.f9149a09.css.map",
-    "main.2aa0f56b.js.map": "/react-endless-practice/static/js/main.2aa0f56b.js.map"
+    "main.7b99819e.css.map": "/react-endless-practice/static/css/main.7b99819e.css.map",
+    "main.c78ee84f.js.map": "/react-endless-practice/static/js/main.c78ee84f.js.map"
   },
   "entrypoints": [
-    "static/css/main.f9149a09.css",
-    "static/js/main.2aa0f56b.js"
+    "static/css/main.7b99819e.css",
+    "static/js/main.c78ee84f.js"
   ]
 }
