@@ -30,7 +30,7 @@ export const Navbar = () => {
           </>
         )}
         {isLoggedIn && (
-          <button className={button} onClick={() => dispatch(logoutThunk())}>
+          <button className={s.button} onClick={() => dispatch(logoutThunk())}>
             Exit
           </button>
         )}
