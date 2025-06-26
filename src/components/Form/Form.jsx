@@ -7,14 +7,13 @@ import { yupResolver } from '@hookform/resolvers/yup';
 
 import s from './Form.module.css';
 
-export const Form = ({ onDataSubmit, formType, values, schema }) => {
+export const Form = ({ onDataSubmit, formType, schema }) => {
   const {
     register,
     reset,
     handleSubmit,
     formState: { errors },
   } = useForm({
-    defaultValues: values,
     resolver: yupResolver(schema),
   });
   const submit = data => {

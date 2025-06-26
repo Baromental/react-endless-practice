@@ -21,10 +21,7 @@ export const Login = () => {
         toast.error(`Invalid email or password`);
       });
   };
-  const values = {
-    email: 'petrokiprik@mail.com',
-    password: '11111111',
-  };
+
 
   return (
     <div>
@@ -32,7 +29,6 @@ export const Login = () => {
         onDataSubmit={handleLogin}
         schema={loginSchema}
         formType="login"
-        values={values}
       />
     </div>
   );
