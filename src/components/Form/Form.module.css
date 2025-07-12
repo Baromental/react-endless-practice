@@ -30,6 +30,13 @@
     outline: none;
   }
 }
+.iconBtn {
+  position: absolute;
+  right: 10px;
+  bottom: 8px;
+  cursor: pointer;
+  background: transparent;
+}
 .button {
   color: chocolate;
   padding: 10px;
@@ -58,12 +65,4 @@
   a:hover {
     color: brown;
   }
-}
-
-.iconBtn {
-  position: absolute;
-  right: 10px;
-  bottom: 8px;
-  cursor: pointer;
-  background: transparent;
 }
